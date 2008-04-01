@@ -47,13 +47,13 @@ Dealerul da celui din dreapta pachetul de carti amestecate pentru a taia sau bat
 ===Legarea tromfului===
 Legarea sau alegerea tromfului consta in nominalizarea unei culori de catre un jucator in functie de cartile pe care le are in mana.
 
-    # Legare normala (cand pachetul de carti nu a fost taiat, deci toti jucatorii au cinci carti in mana)
+    * Legare normala (cand pachetul de carti nu a fost taiat, deci toti jucatorii au cinci carti in mana)
 
-Jucatorul nu poate lega decat daca are in mana cel putin un filcau si in total trei sau patru tromfi. Daca se leaga trei, jucatorul trebuie sa strige ca leaga trei si sa spuna tromful cel mai mic (ex. "trei valetul", "trei tuzul"), daca se leaga patru este suficient a se striga "farba" cu exceptia cazului in care un alt jucator vrea sa lege si el patru si atunci se striga ca zi in cazul pentru trei doar ca se spune patru in loc de trei (ex. "patru calul", "patru valetul"). Nu se poate lega cu cinci tromfi in mana, in acest caz jucatorul trebuie sa spuna ca este "inchis". Nu se poate lega cu patru tromfi in mana si cu farba tuz (farba fiind cartea care nu e tromf).
+    Jucatorul nu poate lega decat daca are in mana cel putin un filcau si in total trei sau patru tromfi. Daca se leaga trei, jucatorul trebuie sa strige ca leaga trei si sa spuna tromful cel mai mic (ex. "trei valetul", "trei tuzul"), daca se leaga patru este suficient a se striga "farba" cu exceptia cazului in care un alt jucator vrea sa lege si el patru si atunci se striga ca zi in cazul pentru trei doar ca se spune patru in loc de trei (ex. "patru calul", "patru valetul"). Nu se poate lega cu cinci tromfi in mana, in acest caz jucatorul trebuie sa spuna ca este "inchis". Nu se poate lega cu patru tromfi in mana si cu farba tuz (farba fiind cartea care nu e tromf).
 
-Cel care a legat cei mai multi tromfi castiga dreptul de a alege tromful. In cazul in care sunt mai multi jucatori cu acelasi numar de tromfi, cel care are cel mai mare tromf mic castiga dreptul de a alege tromful (de aceea este necesar la strigare sa se spuna numarul de tromfi si tromful cel mai mic)
+    Cel care a legat cei mai multi tromfi castiga dreptul de a alege tromful. In cazul in care sunt mai multi jucatori cu acelasi numar de tromfi, cel care are cel mai mare tromf mic castiga dreptul de a alege tromful (de aceea este necesar la strigare sa se spuna numarul de tromfi si tromful cel mai mic)
 
-    # Fris (cand pachetul de carti a fost taiat si dealerul a impartit doar cate trei carti)
+    * Fris (cand pachetul de carti a fost taiat si dealerul a impartit doar cate trei carti)
 
 Primul jucator care da jos un filcau are dreptul de a alege tromful. Acesta trebuie sa spuna culoarea pe care o doreste tromf inainte ca dealerul sa imparta celelalte doua carti. Daca nici un jucator nu a dat nici un filcau jos, dealerul imparte restul de carti si se continua cu legarea normala.
 
@@ -83,18 +83,17 @@ O partida urmeaza urmatorul sir de evenimente:
 
 
 ===Set de reguli===
-1. Dealerul nu este obligat sa astepte ca ceilalti jucatori sa faca fris.
+    # Dealerul nu este obligat sa astepte ca ceilalti jucatori sa faca fris.
 
-2. Nu se mai poate face fris, daca cel putin un jucator s-a uitat in celelalte doua carti pe care le-a primit.
+    # Nu se mai poate face fris, daca cel putin un jucator s-a uitat in celelalte doua carti pe care le-a primit.
 
-3. Pe filcaul cu care s-a facut fris, ceilalti jucatori sunt obligati sa dea carte mica (valet sau cal), daca nu au in mana pot cere dealerului sa ii dea celelalte carti pe fata. (se mai spune sa ii intoarca pe fata cartile)
+    # Pe filcaul cu care s-a facut fris, ceilalti jucatori sunt obligati sa dea carte mica (valet sau cal), daca nu au in mana pot cere dealerului sa ii dea celelalte carti pe fata. (se mai spune sa ii intoarca pe fata cartile)
 
-4. Este permis a se da carte mare (zecica sau tuz) pe fris daca jucatorul nu are carte mica nici dupa intoarcerea cartilor.
+    # Este permis a se da carte mare (zecica sau tuz) pe fris daca jucatorul nu are carte mica nici dupa intoarcerea cartilor.
 
-5. Este interzis a se da cu filcau peste filcaul de fris.
+    # Este interzis a se da cu filcau peste filcaul de fris.
+    # Cel care a cerut sa i se dea cartile pe fata, nu este obligat sa dea jos carte din cele intoarse pe fata.
 
-6. Cel care a cerut sa i se dea cartile pe fata, nu este obligat sa dea jos carte din cele intoarse pe fata.
+    # Jucatorul este obligat sa lege cel mai mare tromf.
 
-7. Jucatorul este obligat sa lege cel mai mare tromf.
-
-8. Daca jucatorul care a legat trei a dus prima mana din partida, este obligat sa dea jos cu farba la urmatoarea mana.
+    # Daca jucatorul care a legat trei a dus prima mana din partida, este obligat sa dea jos cu farba la urmatoarea mana.
