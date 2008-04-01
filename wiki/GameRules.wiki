@@ -84,16 +84,10 @@ O partida urmeaza urmatorul sir de evenimente:
 
 ===Set de reguli===
     # Dealerul nu este obligat sa astepte ca ceilalti jucatori sa faca fris.
-
     # Nu se mai poate face fris, daca cel putin un jucator s-a uitat in celelalte doua carti pe care le-a primit.
-
     # Pe filcaul cu care s-a facut fris, ceilalti jucatori sunt obligati sa dea carte mica (valet sau cal), daca nu au in mana pot cere dealerului sa ii dea celelalte carti pe fata. (se mai spune sa ii intoarca pe fata cartile)
-
     # Este permis a se da carte mare (zecica sau tuz) pe fris daca jucatorul nu are carte mica nici dupa intoarcerea cartilor.
-
     # Este interzis a se da cu filcau peste filcaul de fris.
     # Cel care a cerut sa i se dea cartile pe fata, nu este obligat sa dea jos carte din cele intoarse pe fata.
-
     # Jucatorul este obligat sa lege cel mai mare tromf.
-
     # Daca jucatorul care a legat trei a dus prima mana din partida, este obligat sa dea jos cu farba la urmatoarea mana.
