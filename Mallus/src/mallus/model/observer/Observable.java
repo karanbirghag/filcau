@@ -5,9 +5,6 @@
 
 package mallus.model.observer;
 
-import java.util.LinkedList;
-import java.util.List;
-
 
 /**
  *
