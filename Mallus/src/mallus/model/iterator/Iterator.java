@@ -3,7 +3,9 @@
  * and open the template in the editor.
  */
 
-package mallus.model;
+package mallus.model.iterator;
+
+import mallus.model.*;
 
 /**
  *

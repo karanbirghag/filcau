@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package mallus.model;
+package mallus.model.iterator;
 
 import java.util.ArrayList;
 import java.util.List;
