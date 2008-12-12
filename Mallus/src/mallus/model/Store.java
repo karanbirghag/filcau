@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import mallus.model.iterator.Aggregate;
-import mallus.model.iterator.Collection;
+import mallus.model.iterator.Enumeration;
 import mallus.model.observer.Observable;
 import mallus.model.observer.StoreObserver;
 
@@ -21,13 +21,13 @@ public abstract class Store implements Observable {
 
     private String name;
 
-    private Collection<Item> items = new Aggregate<Item>();
+    private Enumeration<Item> items = new Aggregate<Item>();
 
-    public Collection<Item> getItems() {
+    public Enumeration<Item> getItems() {
         return items;
     }
 
-    public void setItems(Collection<Item> items) {
+    public void setItems(Enumeration<Item> items) {
         this.items = items;
     }
 

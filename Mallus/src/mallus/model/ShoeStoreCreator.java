@@ -8,7 +8,7 @@ package mallus.model;
 import java.util.ArrayList;
 import java.util.List;
 import mallus.model.iterator.Aggregate;
-import mallus.model.iterator.Collection;
+import mallus.model.iterator.Enumeration;
 
 /**
  *
@@ -30,8 +30,8 @@ public class ShoeStoreCreator extends StoreCreator {
      * Return items for the store.
      * @return
      */
-    private Collection<Item> getItemsForStore() {
-        Collection<Item> items = new Aggregate<Item>();
+    private Enumeration<Item> getItemsForStore() {
+        Enumeration<Item> items = new Aggregate<Item>();
         Item i1 = new Item("Item1", "Item1_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(2.0));
         Item i2 = new Item("Item2", "Item2_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(2.3));
         Item i3 = new Item("Item3", "Item3_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(1.1));
