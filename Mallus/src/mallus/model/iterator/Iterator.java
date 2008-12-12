@@ -5,8 +5,6 @@
 
 package mallus.model.iterator;
 
-import mallus.model.*;
-
 /**
  *
  * @author marius.lazar
