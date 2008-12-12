@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author marius.lazar
  */
-public class Aggregate<E> {
+public class Aggregate<E> implements Collection<E>{
     private List<E> elements;
 
     public Aggregate() {
