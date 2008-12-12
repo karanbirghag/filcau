@@ -7,7 +7,7 @@ package mallus.model.observer;
 
 
 /**
- *
+ * Interface
  * @author SWETS_MAIL\lsdrom1
  */
 public interface Observable {
