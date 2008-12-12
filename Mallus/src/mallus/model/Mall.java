@@ -15,8 +15,8 @@ public class Mall {
 
    static Mall mallInstance;
    public String name;
-   public List <Store> stores;
-   public List <Customer> customers;
+   public Aggregate <Store> stores;
+   public Aggregate <Customer> customers;
 
    private Mall() {
    }
