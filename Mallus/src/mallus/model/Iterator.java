@@ -14,29 +14,29 @@ public class Iterator<E> {
     private E currentElement = null;
     private int currentIndex = 0;
 
-    public Iterator (Aggregate<E> aggregate) {
+    Iterator (Aggregate<E> aggregate) {
         this.aggregate = aggregate;
         if (aggregate.size() > 0) {
             currentElement = aggregate.getElementAt(0);
         }
     }
 
-    E next() {
+    public E next() {
         int nextIndex = currentIndex + 1;
         currentElement = aggregate.getElementAt(nextIndex);
         currentIndex = nextIndex;
         return currentElement;
     }
-    E previous() {
+    public E previous() {
         int previousIndex = currentIndex - 1;
         currentElement = aggregate.getElementAt(previousIndex);
         currentIndex = previousIndex;
         return currentElement;
     }
-    E current() {
+    public E current() {
         return currentElement;
     }
-    boolean hasNext() {
+    public boolean hasNext() {
        if (aggregate.size() <= currentIndex + 1) {
            return false;
        } else {
