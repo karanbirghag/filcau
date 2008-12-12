@@ -5,7 +5,7 @@
 
 package mallus.model;
 
-import mallus.model.iterator.Aggregate;
+import mallus.model.iterator.ItemsEnumeration;
 import mallus.model.iterator.Enumeration;
 
 /**
@@ -29,7 +29,7 @@ public class BookStoreCreator extends StoreCreator {
      * @return
      */
     private Enumeration<Item> getItemsForStore() {
-        Enumeration<Item> items = new Aggregate<Item>();
+        Enumeration<Item> items = new ItemsEnumeration<Item>();
         Item i1 = new Item("Item1", "Item1_BookStore", BookStoreCreator.SHOP_NAME, new Double(2.0));
         Item i2 = new Item("Item2", "Item2_BookStore", BookStoreCreator.SHOP_NAME, new Double(2.3));
         Item i3 = new Item("Item3", "Item3_BookStore", BookStoreCreator.SHOP_NAME, new Double(1.1));

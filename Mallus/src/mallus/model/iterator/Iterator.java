@@ -9,41 +9,14 @@ package mallus.model.iterator;
  *
  * @author marius.lazar
  */
-public class Iterator<E> {
-    private Aggregate<E> aggregate;
-    private E currentElement = null;
-    private int currentIndex = 0;
+public interface Iterator<E> {
 
-    Iterator (Aggregate<E> aggregate) {
-        this.aggregate = aggregate;
-        if (aggregate.size() > 0) {
-            currentElement = aggregate.getElementAt(0);
-        }
-    }
+    public E next();
 
-    public E next() {
-        int nextIndex = currentIndex + 1;
-        currentElement = aggregate.getElementAt(nextIndex);
-        currentIndex = nextIndex;
-        return currentElement;
-    }
+    public E previous();
 
-    public E previous() {
-        int previousIndex = currentIndex - 1;
-        currentElement = aggregate.getElementAt(previousIndex);
-        currentIndex = previousIndex;
-        return currentElement;
-    }
+    public E current();
 
-    public E current() {
-        return currentElement;
-    }
-    
-    public boolean hasNext() {
-       if (aggregate.size() <= currentIndex + 1) {
-           return false;
-       } else {
-           return true;
-       }
-    }
+    public boolean hasNext();
+
 }
