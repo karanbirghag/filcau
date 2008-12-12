@@ -5,15 +5,18 @@
 
 package mallus.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author marius.lazar
  */
 public class Aggregate<E> {
-    private java.util.List<E> elements;
+    private List<E> elements;
 
     public Aggregate() {
-        elements = new java.util.ArrayList<E>();
+        elements = new ArrayList<E>();
     }
 
     public Aggregate(java.util.List<E> elements) {
