@@ -27,15 +27,18 @@ public class Iterator<E> {
         currentIndex = nextIndex;
         return currentElement;
     }
+
     public E previous() {
         int previousIndex = currentIndex - 1;
         currentElement = aggregate.getElementAt(previousIndex);
         currentIndex = previousIndex;
         return currentElement;
     }
+
     public E current() {
         return currentElement;
     }
+    
     public boolean hasNext() {
        if (aggregate.size() <= currentIndex + 1) {
            return false;
