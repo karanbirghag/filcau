@@ -8,6 +8,8 @@ package mallus.model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import mallus.model.iterator.Aggregate;
+import mallus.model.iterator.Collection;
 import mallus.model.observer.Observable;
 import mallus.model.observer.StoreObserver;
 
@@ -19,13 +21,13 @@ public abstract class Store implements Observable {
 
     private String name;
 
-    private List<Item> items = new ArrayList<Item>();
+    private Collection<Item> items = new Aggregate<Item>();
 
-    public List<Item> getItems() {
+    public Collection<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(Collection<Item> items) {
         this.items = items;
     }
 
