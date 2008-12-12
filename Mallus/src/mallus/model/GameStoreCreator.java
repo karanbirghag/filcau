@@ -5,8 +5,6 @@
 
 package mallus.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import mallus.model.iterator.Aggregate;
 import mallus.model.iterator.Enumeration;
 
