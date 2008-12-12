@@ -16,7 +16,7 @@ public class Mall {
 
    static Mall mallInstance;
    public String name;
-   public List <Store> stores;
+   public List <Store> stores = new ArrayList<Store>();
    public List <Customer> customers;
 
    private Mall() {
@@ -34,39 +34,33 @@ public class Mall {
       throw new CloneNotSupportedException();
    }
 
-   public void Enter() {
-
-        
+   public void Enter() {    
 
    }
 
    public void Exit() {
-
    
    }
 
-   public ShoppingCart getShoppingCart() {
+    public ShoppingCart getShoppingCart() {
         ShoppingCart sc = new ShoppingCart();
+        return sc;
+    }
 
-
-   return sc;
-   }
-
-   public List Customers() {
+    public List Customers() {
         List<Customer> customers = new ArrayList();
-
         return customers;
    }
 
-      public List Stores() {
-        List<Store> stores = new ArrayList();
+    public List Stores() {
 
+        List<Store> stores = new ArrayList();
         return stores;
    }
-      public boolean addStore(Store store) {
-            boolean hasBeenAdded = false;
-
-            return hasBeenAdded;
-      }
+    
+    
+    public void addStore(Store store) {
+        stores.add(store);
+    }
 
 }
