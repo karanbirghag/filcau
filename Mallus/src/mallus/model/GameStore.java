@@ -10,7 +10,4 @@ package mallus.model;
  * @author andrei.nistor
  */
 public class GameStore extends Store {
-    public Store createStore() {
-        return new GameStore();
-    }
 }

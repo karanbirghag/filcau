@@ -10,5 +10,5 @@ package mallus.model;
  * @author andrei.nistor
  */
 public abstract class Store {
-    protected abstract Store createStore();
+
 }
