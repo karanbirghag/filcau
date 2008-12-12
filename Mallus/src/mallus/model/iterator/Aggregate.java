@@ -28,12 +28,12 @@ public class Aggregate<E> implements Collection<E>{
         return theIterator;
     }
 
-    public void add(E element) {
-        elements.add(element);
+    public boolean add(E element) {
+        return elements.add(element);
     }
 
-    public void remove(E element) {
-        elements.remove(element);
+    public boolean remove(E element) {
+        return elements.remove(element);
     }
 
     public int indexOf(E element) {

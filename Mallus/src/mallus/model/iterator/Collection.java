@@ -13,9 +13,9 @@ public interface Collection<E> {
 
     public Iterator<E> getIterator();
 
-    public void add(E element);
+    public boolean add(E element);
 
-    public void remove(E element);
+    public boolean remove(E element);
 
     public int indexOf(E element);
 
