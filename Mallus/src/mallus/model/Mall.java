@@ -59,8 +59,9 @@ public class Mall {
    }
     
     
-    public void addStore(Store store) {
+    public Mall addStore(Store store) {
         stores.add(store);
+        return this;
     }
 
 }

@@ -4,6 +4,12 @@
 
 package mallus;
 
+import mallus.model.BookStore;
+import mallus.model.BookStoreCreator;
+import mallus.model.GameStore;
+import mallus.model.GameStoreCreator;
+import mallus.model.Mall;
+import mallus.model.ShoeStoreCreator;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -39,6 +45,13 @@ public class MallusApp extends SingleFrameApplication {
      * Main method launching the application.
      */
     public static void main(String[] args) {
+        Mall mall = Mall.getInstance();
+        
+        mall.addStore(new ShoeStoreCreator().createStore())
+                .addStore(new GameStoreCreator().createStore())
+                .addStore(new BookStoreCreator().createStore());
+
+        // launch the interface;
         launch(MallusApp.class, args);
     }
 }

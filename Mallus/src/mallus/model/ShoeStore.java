@@ -10,5 +10,7 @@ package mallus.model;
  * @author andrei.nistor
  */
 public class ShoeStore extends Store {
-    
+    public ShoeStore(String name) {
+        setName(name);
+    }
 }

@@ -10,4 +10,7 @@ package mallus.model;
  * @author andrei.nistor
  */
 public class GameStore extends Store {
+    public GameStore(String name) {
+        setName(name);
+    }
 }
