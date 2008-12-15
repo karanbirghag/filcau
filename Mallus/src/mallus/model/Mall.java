@@ -5,8 +5,7 @@
 
 package mallus.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import mallus.model.iterator.Enumeration;
 
 /**
  *
@@ -16,8 +15,8 @@ public class Mall {
 
    static Mall mallInstance;
    public String name;
-   public List <Store> stores = new ArrayList<Store>();
-   public List <Customer> customers;
+   private Enumeration<Store> stores;
+   private Enumeration<Customer> customers;
 
    private Mall() {
    }
@@ -34,11 +33,11 @@ public class Mall {
       throw new CloneNotSupportedException();
    }
 
-   public void Enter() {    
+   public void enter() {
 
    }
 
-   public void Exit() {
+   public void exit() {
    
    }
 
@@ -47,14 +46,11 @@ public class Mall {
         return sc;
     }
 
-    public List Customers() {
-        List<Customer> customers = new ArrayList();
+    public Enumeration<Customer> customers() {
         return customers;
    }
 
-    public List Stores() {
-
-        List<Store> stores = new ArrayList();
+    public Enumeration<Store> stores() {
         return stores;
    }
     
