@@ -4,12 +4,13 @@
 
 package mallus;
 
-import mallus.model.BookStore;
 import mallus.model.BookStoreCreator;
-import mallus.model.GameStore;
 import mallus.model.GameStoreCreator;
 import mallus.model.Mall;
 import mallus.model.ShoeStoreCreator;
+import mallus.model.Store;
+import mallus.model.iterator.Enumeration;
+import mallus.model.iterator.Iterator;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 
@@ -22,7 +23,14 @@ public class MallusApp extends SingleFrameApplication {
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
-        show(new MallusView(this));
+        MallusView mallusView = new MallusView(this);
+        show(mallusView);
+        StoreItemsObserver sio = new StoreItemsObserver(mallusView);
+        Enumeration stores = Mall.getInstance().stores();
+        for (Iterator<Store> it = stores.getIterator(); it.hasNext();) {
+            Store store = it.next();
+            store.addObserver(sio);
+        }
     }
 
     /**

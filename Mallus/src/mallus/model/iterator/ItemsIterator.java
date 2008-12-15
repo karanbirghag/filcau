@@ -12,7 +12,7 @@ package mallus.model.iterator;
 public class ItemsIterator<E> implements Iterator {
     private Enumeration<E> aggregate;
     private E currentElement = null;
-    private int currentIndex = 0;
+    private int currentIndex = -1;
 
     ItemsIterator (Enumeration<E> aggregate) {
         this.aggregate = aggregate;

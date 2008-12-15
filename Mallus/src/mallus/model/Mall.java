@@ -6,6 +6,7 @@
 package mallus.model;
 
 import mallus.model.iterator.Enumeration;
+import mallus.model.iterator.StoresEnumeration;
 
 /**
  *
@@ -15,7 +16,7 @@ public class Mall {
 
    static Mall mallInstance;
    public String name;
-   private Enumeration<Store> stores;
+   private Enumeration<Store> stores = new StoresEnumeration<Store>();
    private Enumeration<Customer> customers;
 
    private Mall() {

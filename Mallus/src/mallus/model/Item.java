@@ -59,4 +59,7 @@ public class Item {
         this.storeId = storeId;
     }
     
+    public String toString() {
+        return price + "$ " + name;
+    }
 }

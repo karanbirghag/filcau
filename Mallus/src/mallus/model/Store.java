@@ -30,6 +30,10 @@ public abstract class Store implements Observable {
         this.items = items;
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+        notifyObservers();
+    }
     public String getName() {
         return name;
     }
@@ -62,4 +66,7 @@ public abstract class Store implements Observable {
         }
     }
 
+    public String toString() {
+        return name;
+    }
 }
