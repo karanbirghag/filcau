@@ -30,11 +30,11 @@ public class GameStoreCreator extends StoreCreator {
      */
     private Enumeration<Item> getItemsForStore() {
         Enumeration<Item> items = new ItemsEnumeration<Item>();
-        Item i1 = new Item("Item1", "Item1_GameStore", GameStoreCreator.SHOP_NAME, new Double(2.0));
-        Item i2 = new Item("Item2", "Item2_GameStore", GameStoreCreator.SHOP_NAME, new Double(2.3));
-        Item i3 = new Item("Item3", "Item3_GameStore", GameStoreCreator.SHOP_NAME, new Double(1.1));
-        Item i4 = new Item("Item4", "Item4_GameStore", GameStoreCreator.SHOP_NAME, new Double(19.2));
-        Item i5 = new Item("Item5", "Item5_GameStore", GameStoreCreator.SHOP_NAME, new Double(5.5));
+        Item i1 = new Item("Mario", "Item1_GameStore", GameStoreCreator.SHOP_NAME, new Double(2.0));
+        Item i2 = new Item("Duke Nukem 3D", "Item2_GameStore", GameStoreCreator.SHOP_NAME, new Double(2.3));
+        Item i3 = new Item("Quake", "Item3_GameStore", GameStoreCreator.SHOP_NAME, new Double(1.1));
+        Item i4 = new Item("Tetris", "Item4_GameStore", GameStoreCreator.SHOP_NAME, new Double(19.2));
+        Item i5 = new Item("Solitaire", "Item5_GameStore", GameStoreCreator.SHOP_NAME, new Double(5.5));
         items.add(i1);
         items.add(i2);
         items.add(i3);
