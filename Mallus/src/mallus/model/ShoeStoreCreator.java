@@ -30,11 +30,11 @@ public class ShoeStoreCreator extends StoreCreator {
      */
     private Enumeration<Item> getItemsForStore() {
         Enumeration<Item> items = new ItemsEnumeration<Item>();
-        Item i1 = new Item("Item1", "Item1_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(2.0));
-        Item i2 = new Item("Item2", "Item2_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(2.3));
-        Item i3 = new Item("Item3", "Item3_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(1.1));
-        Item i4 = new Item("Item4", "Item4_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(19.2));
-        Item i5 = new Item("Item5", "Item5_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(5.5));
+        Item i1 = new Item("Parada", "Item1_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(2.0));
+        Item i2 = new Item("Buma", "Item2_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(2.3));
+        Item i3 = new Item("Reeboc", "Item3_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(1.1));
+        Item i4 = new Item("Adibas", "Item4_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(19.2));
+        Item i5 = new Item("Mike", "Item5_ShoeStore", ShoeStoreCreator.SHOP_NAME, new Double(5.5));
         items.add(i1);
         items.add(i2);
         items.add(i3);
