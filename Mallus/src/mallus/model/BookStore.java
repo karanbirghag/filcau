@@ -11,6 +11,6 @@ package mallus.model;
  */
 public class BookStore extends Store {
     public BookStore(String name) {
-        setName(name);
+        super(name);
     }
 }

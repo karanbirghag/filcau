@@ -14,7 +14,7 @@ import mallus.model.iterator.Enumeration;
  */
 public class BookStoreCreator extends StoreCreator {
 
-    private static String SHOP_NAME = "Book Store";
+    private static final String SHOP_NAME = "Book Store";
 
     @Override
     public Store createStore() {

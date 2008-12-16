@@ -20,6 +20,12 @@ public abstract class Store implements Observable {
 
     private String name;
 
+    public Store() {
+    }
+
+    public Store(String name) {
+        this.name = name;
+    }
     private Enumeration<Item> items = new ItemsEnumeration<Item>();
 
     public Enumeration<Item> getItems() {
