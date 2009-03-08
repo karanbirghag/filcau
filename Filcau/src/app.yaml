@@ -1,0 +1,17 @@
+application: filcau
+version: 3
+runtime: python
+api_version: 1
+
+handlers:
+- url: /resources/js
+  static_dir: resources/js
+
+- url: /resources/css
+  static_dir: resources/css
+
+- url: /resources/img
+  static_dir: resources/img
+
+- url: /.*
+  script: web/dispatcher.py
