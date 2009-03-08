@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Filcau: Dashboard</title>
+<link  type="text/css" rel="stylesheet" href="/resources/css/main.css" />
+</head>
+<body>
+
+	<div id="header">
+		{{ userName }} | <a href="http://code.google.com/p/filcau/wiki/GameRules">Help</a> | <a href="{{ logoutURL }}">Sign out</a>
+	</div>
+
+
+	<div id="content">
+		<h3>Current games:</h3> 
+		<ul class="simpleList" id="gamesList">
+			<li class="clean">&nbsp;</li>
+		</ul>
+		
+		<form action="/g" method="post" id="createGameForm">
+			<label for="gameName">Create your own game </label>
+			<input type="text" name="gameName" id="gameName"/>
+			<input id="createGameBt" type="submit" value="Host game"/>
+		</form>
+	</div>
+
+	<div id="footer">
+		©2009 Pava
+	</div>
+	
+	<script type="text/javascript" src="/resources/js/jquery.js"></script>
+	<script type="text/javascript" src="/resources/js/json.js"></script>
+	<script type="text/javascript" src="/resources/js/main.js"></script>
+	
+</body>
+</html>

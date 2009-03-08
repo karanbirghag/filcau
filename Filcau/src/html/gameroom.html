@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Filcau: Dashboard</title>
+<link  type="text/css" rel="stylesheet" href="/resources/css/main.css" />
+</head>
+<body>
+
+	<div id="header">
+		{{ user.nickname }} | <a href="http://code.google.com/p/filcau/wiki/GameRules">Help</a> | <a href="{{ logoutURL }}">Sign out</a>
+	</div>
+
+
+	<div id="content">
+		<h3> {{ game.name }}
+		</h3> 
+		<p id="status"></p>
+		<div id="players">
+		{% for player in players %}
+			<div>{{ player.alias }} </div>
+		{% endfor %}
+		</div>
+
+		<div id="teams">
+			<h5 id="team1">Team 1: <a href="javascript:doJoin(1);">join team</a></h5>
+			<div class="player" id="player1">Player 1</div>
+			<div class="player" id="player2">Player 2</div>
+			<h5 id="team2">Team 2: <a href="javascript:doJoin(2);">join team</a></h5>
+			<div class="player" id="player3">Player 1</div>
+			<div class="player" id="player4">Player 2</div>
+		</div>			
+		
+		<div class="clean">&nbsp;</div>
+	</div>
+ 
+ 	{% if isOwner %}
+ 		<input id="deleteGameBt" type="button" value="End game" onclick="doDeleteGame();"/>
+ 		<input class="hidden" id="startGameBt" type="button" value="Start game" onclick="alert('TODO: implement this!');"/>
+	{% else %}
+		<input type="button" value="Leave game" onclick="doLeaveGame('{{ game.key }}');"/>
+ 	{% endif %}
+
+	<input type="hidden" id="gameId" value="{{ game.key }}"/>
+	<div id="footer">
+		©2009 Pava
+	</div>
+	<script type="text/javascript">
+		var isOwner = true;
+		if ('{{ isOwner }}' != 'True') {
+			isOwner = !isOwner;
+		}
+		var gameId = '{{ game.key }}';
+	</script>
+	<script type="text/javascript" src="/resources/js/jquery.js"></script>
+	<script type="text/javascript" src="/resources/js/json.js"></script>
+	<script type="text/javascript" src="/resources/js/gr.js"></script>
+	
+</body>
+</html>
