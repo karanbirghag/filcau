@@ -105,6 +105,10 @@ ul.simpleList li span.first {
 	padding:10px;
 	width:50%;
 }
+#teams .player.active {
+	color: black;
+	font-weight: bold;
+}
 div.clean {
 	clear: both;
 	height: 0;
@@ -114,9 +118,14 @@ div.clean {
 	font-size: 0;
 }
 .small {
-	font-size: 0.8em;
+	font-size: 0.6em;
 }
 #players .small {
-	color: #00a2ff;
 	padding: 5px;
+}
+.valid {
+	color: #0c0;
+}
+.invalid {
+	color: #c00;
 }
