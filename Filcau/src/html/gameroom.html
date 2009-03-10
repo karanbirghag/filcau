@@ -18,17 +18,23 @@
 		<p id="status"></p>
 		<div id="players">
 		{% for player in players %}
-			<div>{{ player.alias }} </div>
+			<div><label>l{{ player.alias }}</label></div>
 		{% endfor %}
 		</div>
 
 		<div id="teams">
-			<h5 id="team1">Team 1: <a href="javascript:doJoin(1);">join team</a></h5>
-			<div class="player" id="player1">Player 1</div>
-			<div class="player" id="player2">Player 2</div>
-			<h5 id="team2">Team 2: <a href="javascript:doJoin(2);">join team</a></h5>
-			<div class="player" id="player3">Player 1</div>
-			<div class="player" id="player4">Player 2</div>
+			<h5 id="team1">{{ game.team1.name }}: 
+				<a class="join" href="javascript:doJoin(1);">join team</a>
+				<a class="leave hidden" href="javascript:doLeaveTeam(1);">leave team</a>
+			</h5>
+			<div class="player" id="player0">Player 1</div>
+			<div class="player" id="player1">Player 2</div>
+			<h5 id="team2">{{ game.team2.name }}: 
+				<a class="join" href="javascript:doJoin(2);">join team</a>
+				<a class="leave hidden" href="javascript:doLeaveTeam(2);">leave team</a>
+			</h5>
+			<div class="player" id="player2">Player 1</div>
+			<div class="player" id="player3">Player 2</div>
 		</div>			
 		
 		<div class="clean">&nbsp;</div>
