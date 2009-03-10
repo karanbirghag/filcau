@@ -15,7 +15,9 @@ class GameAction(webapp.RequestHandler):
                 games = domain.model.Game.all()
                 games.filter("creator =", player)
                 for game in games:
-                    self.response.out.write("Deleted")    
+                    self.response.out.write("Deleted")
+                    game.team1.delete()
+                    game.team2.delete()    
                     game.delete()
         else:
             self.redirect(users.create_login_url(self.request.uri))

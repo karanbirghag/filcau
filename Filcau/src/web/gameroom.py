@@ -21,6 +21,9 @@ class GameroomAction(webapp.RequestHandler):
             if op == "joinTeam":
                 self.joinTeam(player)
                 return
+            if op == "leaveTeam":
+                self.leaveTeam(player)
+                return
             if op == "leave":
                 game = db.get(db.Key(self.request.get("id")))
                 if not game:
@@ -28,6 +31,10 @@ class GameroomAction(webapp.RequestHandler):
                     return
                 else:
                     code = game.remove(player)
+                    game.team1.removePlayer(player)
+                    game.team2.removePlayer(player)
+                    game.team1.put()
+                    game.team2.put()
                     game.put()
                     return
             if op == "check":
@@ -37,7 +44,11 @@ class GameroomAction(webapp.RequestHandler):
                     for playerKey in game.players:
                         player = db.get(db.Key(playerKey))
                         players.append(player.alias)
-                    self.response.out.write(simplejson.dumps(players))
+                    teams = [game.team1.getPlayer1Alias(),
+                                game.team1.getPlayer2Alias(),
+                                game.team2.getPlayer1Alias(),
+                                game.team2.getPlayer2Alias()]                        
+                    self.response.out.write(simplejson.dumps({"players":players, "teams":teams}))
                 else:
                     self.response.out.write("Game ended")
                 return
@@ -49,6 +60,12 @@ class GameroomAction(webapp.RequestHandler):
                     return
             else:
                 game = domain.model.Game(name = self.request.get('gameName'), creator = player)
+                team1 = domain.model.Team(name="Team one")
+                team2 = domain.model.Team(name="Team two")
+                team1.put()
+                team2.put()
+                game.team1 = team1
+                game.team2 = team2
             game.addPlayer(player)
             game.put()
             
@@ -74,9 +91,32 @@ class GameroomAction(webapp.RequestHandler):
     def joinTeam(self, player):
         game = db.get(db.Key(self.request.get("id")))
         teamNumber = self.request.get("team")
-        code = game.joinTeam(player, teamNumber)
-        if not code == -1:
-            game.put()
-        self.response.out.write(code)
+        team = game.team1
+        if teamNumber == "2":
+            team = game.team2
+        team.addPlayer(player)
+        team.put()
+        
+        results = [game.team1.getPlayer1Alias(),
+            game.team1.getPlayer2Alias(),
+            game.team2.getPlayer1Alias(),
+            game.team2.getPlayer2Alias()]
+        self.response.out.write(simplejson.dumps(results))
         return
+
+    def leaveTeam(self, player):
+        game = db.get(db.Key(self.request.get("id")))
+        teamNumber = self.request.get("team")
+        team = game.team1
+        if teamNumber == "2":
+            team = game.team2
+        team.removePlayer(player)
+        team.put()
+        
+        results = [game.team1.getPlayer1Alias(),
+            game.team1.getPlayer2Alias(),
+            game.team2.getPlayer1Alias(),
+            game.team2.getPlayer2Alias()]
+        self.response.out.write(simplejson.dumps(results))
+        return    
         
