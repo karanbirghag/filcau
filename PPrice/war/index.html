@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Hello App Engine</title>
+  </head>
+
+  <body>
+    <h1>Hello App Engine!</h1>
+	
+    <table>
+      <tr>
+        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
+      </tr>
+      <tr>
+        <td><a href="pprice?m=stations">Get All Stations</a></td>
+      </tr>
+    </table>
+    
+    <br/>    Test price put:<br/>
+    <form action="pprice" method="POST">
+        <label>stationKey</label><input type="text" name="stationKey"/><br/>
+        <label>flavor</label><input type="text" name="flavor"/><br/>
+        <label>latitude</label><input type="text" name="latitude"/><br/>
+        <label>longitude</label><input type="text" name="longitude"/><br/>
+        <label>location</label><input type="text" name="location"/><br/>
+        <label>station</label><input type="text" name="station"/><br/>
+        <label>type</label><input type="text" name="type"/><br/>
+        <label>value</label><input type="text" name="value"/><br/>
+        <input type="submit"/>
+    </form>
+  </body>
+</html>
