@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,25 +31,43 @@ public class PPriceServlet extends HttpServlet {
         String method = req.getParameter("m");
         if (method.equals("stations")) {
             List<StationFlavor> allStations = services.getAllStations();
-            for (StationFlavor sf : allStations) {
-                resp.getWriter().println(sf.getStation() + " " + sf.getStationPriceDiesel() + "D " + sf.getStationPricePetrol() + "P"
-                                        + "<b><a href='pprice?m=lowest&s=" + sf.getStation() + "'>see prices</a></b><br/>");
+            req.setAttribute("stations", allStations);
+            forward(req, resp, "/stations.jsp");
+        } else {
+            String stationKeyAsString = req.getParameter("s");
+            if (method.equals("lowest")) {
+                List<StationFlavor> stationPrices = services.getStationPrices(stationKeyAsString);
+                req.setAttribute("prices", stationPrices);
+                req.setAttribute("s", stationKeyAsString);
+                forward(req, resp, "/stationsprices.jsp");
+            } else if (method.equals("flavor")) {
+                String station = stationKeyAsString;
+                String flavor = req.getParameter("f");
+                resp.getWriter().println(station + " - " + flavor);
+                List<Price> prices = services.getFlavorPrices(station, flavor);
+                for (Price price : prices) {
+                    resp.getWriter().println(price.getLocation() + " " + price.getType() + " " + price.getValue() + " Lei <br/>");
+                }
+            } else if (method.equals("addPrice")) {
+                String key = req.getParameter("stationKey");
+                req.setAttribute("stationKey", key);
+                forward(req, resp, "/addprice.jsp");
             }
-        } else if (method.equals("lowest")) {
-            List<StationFlavor> stationPrices = services.getStationPrices(req.getParameter("s"));
-            resp.getWriter().println(req.getParameter("s") + "<br/>");
-            for (StationFlavor sf : stationPrices) {
-                resp.getWriter().println(sf.getFlavor() + " " + sf.getFlavorPrice() + " "
-                                         + "<b><a href='pprice?m=flavor&s=" + sf.getStation() + "&f=" + sf.getFlavor() + "'>see prices</a></b><br/>");
-            }
-        } else if (method.equals("flavor")) {
-            String station = req.getParameter("s");
-            String flavor = req.getParameter("f");
-            resp.getWriter().println(station + " - " + flavor);
-            List<Price> prices = services.getFlavorPrices(station, flavor);
-            for (Price price : prices) {
-                resp.getWriter().println(price.getLocation() + " " + price.getType() + " " + price.getValue() + " Lei <br/>");
-            }
+        }
+    }
+
+    /**
+     * @param req
+     * @param resp
+     * @param nextJSP
+     * @throws IOException
+     */
+    private void forward(HttpServletRequest req, HttpServletResponse resp, String nextJSP) throws IOException {
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+        try {
+            dispatcher.forward(req, resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
     }
 
@@ -72,7 +92,6 @@ public class PPriceServlet extends HttpServlet {
         price.setValue(new BigDecimal(req.getParameter("value")));
         services.add(stationKey, price);
 
-        resp.setContentType("text/plain");
-        resp.getWriter().println("Price was added!");
+        forward(req, resp, "/price?m=stations");
     }
 }
