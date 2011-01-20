@@ -110,6 +110,12 @@ public class StationFlavor {
         return stationPricePetrol;
     }
 
+    public String getPetrolPrice() {
+        return stationPricePetrol == null ? "-" : stationPricePetrol.toString();
+    }
+    public String getDieselPrice() {
+        return stationPriceDiesel == null ? "-" : stationPriceDiesel.toString();
+    }
     /**
      * @param stationPricePetrol the stationPricePetrol to set
      */

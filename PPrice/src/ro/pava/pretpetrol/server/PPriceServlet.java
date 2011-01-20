@@ -39,6 +39,7 @@ public class PPriceServlet extends HttpServlet {
                 List<StationFlavor> stationPrices = services.getStationPrices(stationKeyAsString);
                 req.setAttribute("prices", stationPrices);
                 req.setAttribute("s", stationKeyAsString);
+                req.setAttribute("stationName", services.getStationFlavor(stationKeyAsString).getStation());
                 forward(req, resp, "/stationsprices.jsp");
             } else if (method.equals("flavor")) {
                 String station = stationKeyAsString;
@@ -48,9 +49,11 @@ public class PPriceServlet extends HttpServlet {
                 for (Price price : prices) {
                     resp.getWriter().println(price.getLocation() + " " + price.getType() + " " + price.getValue() + " Lei <br/>");
                 }
-            } else if (method.equals("addPrice")) {
-                String key = req.getParameter("stationKey");
+            } else if (method.equals("addprice")) {
+                String key = req.getParameter("s");
                 req.setAttribute("stationKey", key);
+                req.setAttribute("stationName", services.getStationFlavor(key).getStation());
+                req.setAttribute("flavors", services.getStationPrices(stationKeyAsString));
                 forward(req, resp, "/addprice.jsp");
             }
         }

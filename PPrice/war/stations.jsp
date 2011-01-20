@@ -6,20 +6,37 @@
 <%@page import="ro.pava.pretpetrol.model.StationFlavor"%>
 <%@page import="com.google.appengine.api.datastore.KeyFactory"%><html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Stations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Stations</title>
+    
+    <link rel="stylesheet" href="/jquery.mobile-1.0a2.css" />
+    <script type="text/javascript" src="/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="/jquery.mobile-1.0a2.js"></script>
+
 </head>
 <body>
-<% List<StationFlavor> stations = (List<StationFlavor>) request.getAttribute("stations"); %>
-<ul>
-<% for (StationFlavor sf : stations) { %>
-    <li>
-        <span><%= sf.getStation() %></span>
-        <span><%= sf.getStationPriceDiesel()%></span><span>D</span>
-        <span><%= sf.getStationPricePetrol()%></span><span>P</span>
-        <span><a href="pprice?m=lowest&s=<%=KeyFactory.keyToString(sf.getKey())%>">View prices</a></span>
-    </li>
-<% } %>
-</ul>
+<div data-role="page" data-theme="b">
+
+    <div data-role="header" data-theme="b">
+        <h1>Titlu</h1>
+    </div>
+
+    <div data-role="content">
+        <% List<StationFlavor> stations = (List<StationFlavor>) request.getAttribute("stations"); %>
+        <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+            <li data-role="list-divider">All stations</li>
+            <% for (StationFlavor sf : stations) { %>
+            <li><span><a href="pprice?m=lowest&s=<%=KeyFactory.keyToString(sf.getKey())%>"><%= sf.getStation() %></a></span> <span><%= sf.getDieselPrice()%></span><span>D</span> <span><%= sf.getPetrolPrice()%></span><span>P</span>
+            <span>View prices</span></li>
+            <% } %>
+        </ul>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <h4>&copy; Copyright Pava 2011</h4>
+    </div>
+
+</div>
+
 </body>
 </html>

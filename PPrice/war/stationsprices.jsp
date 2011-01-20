@@ -9,18 +9,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <% List<StationFlavor> prices = (List<StationFlavor>) request.getAttribute("prices"); %>
 <% String stationKey = (String) request.getAttribute("s"); %>
+<% String stationName = (String) request.getAttribute("stationName"); %>
 <title>Station prices</title>
+    <link rel="stylesheet" href="/jquery.mobile-1.0a2.css" />
+    <script type="text/javascript" src="/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="/jquery.mobile-1.0a2.js"></script>
+
 </head>
 <body>
-<ul>
-<% for (StationFlavor sf : prices) { %>
-    <li>
-        <span><%= sf.getFlavor() %></span>
-        <span><%= sf.getFlavorPrice()%></span><span>Lei</span>
-        <span><a href="pprice?m=lowest&s=<%=KeyFactory.keyToString(sf.getKey())%>">View all</a></span>
-    </li>
-<% } %>
-</ul>
-<a href="pprice?m=addprice&s=<%=stationKey%>">Report price</a>
+
+<body>
+<div data-role="page" data-theme="b">
+
+    <div data-role="header" data-theme="b">
+        <h1>Titlu</h1>
+    </div>
+
+    <div data-role="content">
+        <% List<StationFlavor> stations = (List<StationFlavor>) request.getAttribute("stations"); %>
+        <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+            <li data-role="list-divider"><%= stationName %></li>
+        <% for (StationFlavor sf : prices) { %>
+            <li>
+                <span><a href="pprice?m=flavor&f=<%=KeyFactory.keyToString(sf.getKey())%>&s=<%=stationKey %>">
+                    <%= sf.getFlavor() %>
+                </a></span>
+                <span><%= sf.getFlavorPrice()%></span><span>Lei</span>
+            </li>
+        <% } %>
+        </ul>
+
+        <a href="pprice?m=addprice&s=<%=stationKey%>" data-role="button">Report price</a>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <h4>&copy; Copyright Pava 2011</h4>
+    </div>
+
+</div>
+
 </body>
 </html>

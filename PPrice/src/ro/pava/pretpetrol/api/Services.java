@@ -13,6 +13,7 @@ import ro.pava.pretpetrol.model.StationFlavor;
 import ro.pava.pretpetrol.model.Type;
 
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 public class Services {
 
@@ -41,14 +42,8 @@ public class Services {
         }
         gbx.put(station);
         StationFlavorMeta sfMeta = StationFlavorMeta.get();
-        List<StationFlavor> flavors = gbx.query(sfMeta, station.getKey())
-            .filter(sfMeta.station.equal(price.getStation()))
-            .filter(sfMeta.flavor.equal(price.getFlavour()))
-            .asList();
-        StationFlavor flavor = null;
-        if (flavors.size() > 0) {
-            flavor = flavors.get(1);
-        } else {
+        StationFlavor flavor = Datastore.get(StationFlavor.class, KeyFactory.stringToKey(price.getFlavour()));
+        if (flavor == null) {
             flavor = createFlavor(gbx, price, station.getKey());
         }
 
@@ -59,6 +54,9 @@ public class Services {
         gbx.commit();
     }
 
+    /**
+     * @return get all stations
+     */
     public List<StationFlavor> getAllStations() {
         StationFlavorMeta sfm = StationFlavorMeta.get();
         List<StationFlavor> stations = Datastore.query(StationFlavor.class).filter(sfm.flavor.equal(null)).asList();
@@ -66,12 +64,26 @@ public class Services {
     }
 
 
-    public List<StationFlavor> getStationPrices(String station) {
+    /**
+     * @param stationKey
+     * @return get all flavors of the station (given its key as String)
+     */
+    public List<StationFlavor> getStationPrices(String stationKey) {
+        Key key = KeyFactory.stringToKey(stationKey);
+        StationFlavor station = Datastore.get(StationFlavor.class, key);
         StationFlavorMeta sfm = StationFlavorMeta.get();
-        return Datastore.query(StationFlavor.class).filter(sfm.station.equal(station)).asList();
+        return Datastore.query(StationFlavor.class).filter(sfm.station.equal(station.getStation())).filter(sfm.flavor.isNotNull()).asList();
     }
 
+    public StationFlavor getStationFlavor(String key) {
+        return Datastore.get(StationFlavor.class, KeyFactory.stringToKey(key));
+    }
 
+    /**
+     * @param station
+     * @param flavor
+     * @return get all saved prices for a flavor from a station (perhaps we should only do one per location - getting the earliest one)
+     */
     public List<Price> getFlavorPrices(String station, String flavor) {
         PriceMeta pm = PriceMeta.get();
         return Datastore.query(Price.class).filter(pm.station.equal(station)).filter(pm.flavour.equal(flavor)).asList();
