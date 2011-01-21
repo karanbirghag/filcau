@@ -1,12 +1,16 @@
 package ro.pava.pretpetrol.model;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.slim3.datastore.Attribute;
+import org.slim3.datastore.CreationDate;
+import org.slim3.datastore.CreationUser;
 import org.slim3.datastore.Model;
 
 import com.google.appengine.api.datastore.GeoPt;
 import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.users.User;
 
 @Model
 public class Price {
@@ -27,7 +31,29 @@ public class Price {
 
     private GeoPt gpsLocation;
 
-    /**
+    @Attribute(listener = CreationUser.class)
+    private User user;
+
+    @Attribute(listener = CreationDate.class)
+    private Date reportDate;
+
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Date getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(Date reportDate) {
+		this.reportDate = reportDate;
+	}
+
+	/**
      * @return the key
      */
     public Key getKey() {

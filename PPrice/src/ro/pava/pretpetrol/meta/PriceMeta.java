@@ -1,6 +1,6 @@
 package ro.pava.pretpetrol.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-01-17 13:50:23")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-01-21 15:38:55")
 /** */
 public final class PriceMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretpetrol.model.Price> {
 
@@ -24,6 +24,16 @@ public final class PriceMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretp
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<ro.pava.pretpetrol.model.Price, com.google.appengine.api.datastore.GeoPt> gpsLocation = new org.slim3.datastore.CoreAttributeMeta<ro.pava.pretpetrol.model.Price, com.google.appengine.api.datastore.GeoPt>(this, "gpsLocation", "gpsLocation", com.google.appengine.api.datastore.GeoPt.class);
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<ro.pava.pretpetrol.model.Price, com.google.appengine.api.users.User> user = new org.slim3.datastore.CoreAttributeMeta<ro.pava.pretpetrol.model.Price, com.google.appengine.api.users.User>(this, "user", "user", com.google.appengine.api.users.User.class);
+
+    /** */
+    public final org.slim3.datastore.CoreAttributeMeta<ro.pava.pretpetrol.model.Price, java.util.Date> reportDate = new org.slim3.datastore.CoreAttributeMeta<ro.pava.pretpetrol.model.Price, java.util.Date>(this, "reportDate", "reportDate", java.util.Date.class);
+
+    private static final org.slim3.datastore.CreationUser slim3_userAttributeListener = new org.slim3.datastore.CreationUser();
+
+    private static final org.slim3.datastore.CreationDate slim3_reportDateAttributeListener = new org.slim3.datastore.CreationDate();
 
     private static final PriceMeta slim3_singleton = new PriceMeta();
 
@@ -50,6 +60,8 @@ public final class PriceMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretp
         model.setValue(_value);
         model.setLocation((java.lang.String) entity.getProperty("location"));
         model.setGpsLocation((com.google.appengine.api.datastore.GeoPt) entity.getProperty("gpsLocation"));
+        model.setUser((com.google.appengine.api.users.User) entity.getProperty("user"));
+        model.setReportDate((java.util.Date) entity.getProperty("reportDate"));
         return model;
     }
 
@@ -68,6 +80,8 @@ public final class PriceMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretp
         entity.setUnindexedProperty("value", serializableToBlob(m.getValue()));
         entity.setProperty("location", m.getLocation());
         entity.setProperty("gpsLocation", m.getGpsLocation());
+        entity.setProperty("user", m.getUser());
+        entity.setProperty("reportDate", m.getReportDate());
         return entity;
     }
 
@@ -99,6 +113,9 @@ public final class PriceMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretp
 
     @Override
     protected void prePut(Object model) {
+        ro.pava.pretpetrol.model.Price m = (ro.pava.pretpetrol.model.Price) model;
+        m.setUser(slim3_userAttributeListener.prePut(m.getUser()));
+        m.setReportDate(slim3_reportDateAttributeListener.prePut(m.getReportDate()));
     }
 
     @Override
@@ -152,6 +169,16 @@ public final class PriceMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretp
             encoder = new org.slim3.datastore.json.Default();
             encoder.encode(writer, m.getGpsLocation());
         }
+        if(m.getUser() != null){
+            writer.setNextPropertyName("user");
+            encoder = new org.slim3.datastore.json.Default();
+            encoder.encode(writer, m.getUser());
+        }
+        if(m.getReportDate() != null){
+            writer.setNextPropertyName("reportDate");
+            encoder = new org.slim3.datastore.json.Default();
+            encoder.encode(writer, m.getReportDate());
+        }
         writer.endObject();
     }
 
@@ -179,6 +206,12 @@ public final class PriceMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretp
         reader = rootReader.newObjectReader("gpsLocation");
         decoder = new org.slim3.datastore.json.Default();
         m.setGpsLocation(decoder.decode(reader, m.getGpsLocation()));
+        reader = rootReader.newObjectReader("user");
+        decoder = new org.slim3.datastore.json.Default();
+        m.setUser(decoder.decode(reader, m.getUser()));
+        reader = rootReader.newObjectReader("reportDate");
+        decoder = new org.slim3.datastore.json.Default();
+        m.setReportDate(decoder.decode(reader, m.getReportDate()));
     return m;
 }
 }

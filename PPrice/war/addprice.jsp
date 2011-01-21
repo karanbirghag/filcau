@@ -28,7 +28,8 @@
 
     <div data-role="content">
         <form action="pprice" method="POST">
-            <input type="hidden" name="stationKey" value="<%=stationKey%>"/><br/>
+            <input type="hidden" name="stationKey" value="<%=stationKey%>"/>
+            <input type="hidden" name="station" value="<%=stationName%>"/>
 
             <div data-role="fieldcontain"><label>Price:</label><input type="text" name="value"/></div>
 
@@ -41,22 +42,24 @@
                     <option value="newFlavor">Add new flavor</option>
                 </select>
             </div>
-            <div data-role="fieldcontain" id="flavorEditor">
-                <label for="flavorTxt" class="select">Flavor:</label>
-                <input type="text" name="flavor" id="flavorTxt" />
+            <div id="flavorEditor">
+	            <div data-role="fieldcontain">
+	                <label for="flavorTxt" class="select">Flavor:</label>
+	                <input type="text" name="flavor" id="flavorTxt" />
+	            </div>
+	
+	            <fieldset data-role="controlgroup">
+	                <legend>Type:</legend>
+	                    <input type="radio" name="type" id="Diesel" value="Diesel" checked="checked" />
+	                    <label for="Diesel">Diesel</label>
+	        
+	                    <input type="radio" name="type" id="Petrol" value="Petrol"  />
+	                    <label for="Petrol">Petrol</label>
+	        
+	            </fieldset>
             </div>
 
-            <fieldset data-role="controlgroup">
-                <legend>Type:</legend>
-                    <input type="radio" name="type" id="Diesel" value="Diesel" checked="checked" />
-                    <label for="Diesel">Diesel</label>
-        
-                    <input type="radio" name="type" id="Petrol" value="Petrol"  />
-                    <label for="Petrol">Petrol</label>
-        
-            </fieldset>
-
-            <div data-role="fieldcontain">
+            <div data-role="fieldcontain" style="display: none;">
                 <label>latitude</label><input type="text" name="latitude"/>
                 <label>longitude</label><input type="text" name="longitude"/>
                 <label>location</label><input type="text" name="location"/>

@@ -1,6 +1,6 @@
 package ro.pava.pretpetrol.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-01-17 13:50:23")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2011-01-21 15:38:55")
 /** */
 public final class StationFlavorMeta extends org.slim3.datastore.ModelMeta<ro.pava.pretpetrol.model.StationFlavor> {
 

@@ -44,13 +44,14 @@ public class PPriceServlet extends HttpServlet {
                 req.setAttribute("stationName", services.getStationFlavor(stationKeyAsString).getStation());
                 forward(req, resp, "/stationsprices.jsp");
             } else if (method.equals("flavor")) {
-                String station = stationKeyAsString;
                 String flavor = req.getParameter("f");
-                resp.getWriter().println(station + " - " + flavor);
-                List<Price> prices = services.getFlavorPrices(station, flavor);
-                for (Price price : prices) {
-                    resp.getWriter().println(price.getLocation() + " " + price.getType() + " " + price.getValue() + " Lei <br/>");
-                }
+                StationFlavor sf = services.getStationFlavor(flavor);
+                List<Price> prices = services.getFlavorPrices(sf.getStation(), sf.getFlavor());
+                req.setAttribute("prices", prices);
+                req.setAttribute("stationName", sf.getStation());
+                req.setAttribute("flavorName", sf.getFlavor());
+
+                forward(req, resp, "/prices.jsp");
             } else if (method.equals("addprice")) {
                 String key = req.getParameter("s");
                 req.setAttribute("stationKey", key);
@@ -85,7 +86,9 @@ public class PPriceServlet extends HttpServlet {
             stationKey = KeyFactory.stringToKey(keyValue);
         }
         Price price = new Price();
-        price.setFlavour(req.getParameter("flavor"));
+        String[] flavorValues = req.getParameterValues("flavor");
+		String flavor = flavorValues[0].equals("newFlavor") ? flavorValues[1] : flavorValues[0];
+		price.setFlavour(flavor);
         String latitude = req.getParameter("latitude");
         String longitude = req.getParameter("longitude");
         if (!StringUtil.isEmpty(longitude) && !StringUtil.isEmpty(latitude)) {
@@ -96,7 +99,9 @@ public class PPriceServlet extends HttpServlet {
         price.setType(Type.valueOf(req.getParameter("type")));
         price.setValue(new BigDecimal(req.getParameter("value")));
         services.add(stationKey, price);
+        
+        req.setAttribute("s", keyValue);
 
-        forward(req, resp, "/price?m=stations");
+        forward(req, resp, "/priceAddedOkDialog.jsp");
     }
 }

@@ -22,7 +22,7 @@
 <div data-role="page" data-theme="b">
 
     <div data-role="header" data-theme="b">
-        <h1>Titlu</h1>
+        <h1>Prices at <%=stationName%></h1>
     </div>
 
     <div data-role="content">
