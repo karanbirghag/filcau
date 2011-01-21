@@ -121,6 +121,7 @@ public class StationFlavor {
      */
     public void setStationPricePetrol(BigDecimal stationPricePetrol) {
         this.stationPricePetrol = stationPricePetrol;
+        this.stationPricePetrolCount++;
     }
 
     /**
@@ -149,6 +150,7 @@ public class StationFlavor {
      */
     public void setStationPriceDiesel(BigDecimal stationPriceDiesel) {
         this.stationPriceDiesel = stationPriceDiesel;
+        this.stationPriceDieselCount++;
     }
 
     /**

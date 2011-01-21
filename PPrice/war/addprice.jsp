@@ -9,8 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add price</title>
     <link rel="stylesheet" href="/jquery.mobile-1.0a2.css" />
+    <link rel="stylesheet" href="/addprice.css" />
     <script type="text/javascript" src="/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="/jquery.mobile-1.0a2.js"></script>
+    <script type="text/javascript" src="/addprice.js"></script>
 
 <% String stationName = (String) request.getAttribute("stationName"); %>
 <% String stationKey = (String) request.getAttribute("stationKey"); %>
@@ -30,7 +32,7 @@
 
             <div data-role="fieldcontain"><label>Price:</label><input type="text" name="value"/></div>
 
-            <div data-role="fieldcontain">
+            <div data-role="fieldcontain" id="flavorSelector">
                 <label for="flavor" class="select">Flavor:</label>
                 <select name="flavor" id="flavor">
                     <% for (StationFlavor flavor : flavors) { %>
@@ -38,6 +40,10 @@
                     <% } %>
                     <option value="newFlavor">Add new flavor</option>
                 </select>
+            </div>
+            <div data-role="fieldcontain" id="flavorEditor">
+                <label for="flavorTxt" class="select">Flavor:</label>
+                <input type="text" name="flavor" id="flavorTxt" />
             </div>
 
             <fieldset data-role="controlgroup">

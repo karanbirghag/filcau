@@ -10,15 +10,16 @@
     <title>Stations</title>
     
     <link rel="stylesheet" href="/jquery.mobile-1.0a2.css" />
+    <link rel="stylesheet" href="/addprice.css" />
     <script type="text/javascript" src="/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="/jquery.mobile-1.0a2.js"></script>
-
+    <script type="text/javascript" src="/addprice.js"></script>
 </head>
 <body>
 <div data-role="page" data-theme="b">
 
     <div data-role="header" data-theme="b">
-        <h1>Titlu</h1>
+        <h1>Stations</h1>
     </div>
 
     <div data-role="content">

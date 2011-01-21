@@ -29,7 +29,9 @@ public class PPriceServlet extends HttpServlet {
         resp.setContentType("text/html");
         Services services = new Services();
         String method = req.getParameter("m");
-        if (method.equals("stations")) {
+        if (method.equals("maintenance")) {
+            services.initStations();
+        } else if (method.equals("stations")) {
             List<StationFlavor> allStations = services.getAllStations();
             req.setAttribute("stations", allStations);
             forward(req, resp, "/stations.jsp");

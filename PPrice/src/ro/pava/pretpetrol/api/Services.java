@@ -1,6 +1,7 @@
 package ro.pava.pretpetrol.api;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slim3.datastore.Datastore;
@@ -10,12 +11,28 @@ import ro.pava.pretpetrol.meta.PriceMeta;
 import ro.pava.pretpetrol.meta.StationFlavorMeta;
 import ro.pava.pretpetrol.model.Price;
 import ro.pava.pretpetrol.model.StationFlavor;
+import ro.pava.pretpetrol.model.Stations;
 import ro.pava.pretpetrol.model.Type;
 
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 public class Services {
+
+    public void initStations() {
+        List<Key> allStations = Datastore.query(StationFlavor.class).asKeyList();
+        if (allStations != null && allStations.size() > 0) {
+            return;
+        }
+        for (Stations s : Stations.values()) {
+            StationFlavor sf = new StationFlavor();
+            sf.setKey(Datastore.allocateId(StationFlavor.class));
+            sf.setStation(s.name());
+            sf.setStationPriceDieselCount(0);
+            sf.setStationPricePetrolCount(0);
+            Datastore.put(sf);
+        }
+    }
 
     public void add(Key stationKey, Price price) {
         GlobalTransaction gbx = Datastore.beginGlobalTransaction();
@@ -26,9 +43,6 @@ public class Services {
         if (stationKey == null || station == null) {
             station = createNewStation(gbx, price);
         }
-        Key priceKey = Datastore.allocateId(station.getKey(), Price.class);
-        price.setKey(priceKey);
-        gbx.put(price);
         if (Type.Diesel.equals(price.getType())) {
             BigDecimal recomputedAvg = Util.recomputeAvg(station.getStationPriceDiesel(), station
                     .getStationPriceDieselCount(), price.getValue());
@@ -41,15 +55,26 @@ public class Services {
             station.setStationPricePetrol(recomputedAvg);
         }
         gbx.put(station);
-        StationFlavorMeta sfMeta = StationFlavorMeta.get();
-        StationFlavor flavor = Datastore.get(StationFlavor.class, KeyFactory.stringToKey(price.getFlavour()));
-        if (flavor == null) {
-            flavor = createFlavor(gbx, price, station.getKey());
+        StationFlavor flavor = null;
+        try {
+            Key flavorKey = KeyFactory.stringToKey(price.getFlavour());
+            flavor = Datastore.get(StationFlavor.class, flavorKey);
+            price.setFlavour(flavor.getFlavor());
+        } catch (IllegalArgumentException e) {
+            //price.getFlavor() was not a key but the name of a new flavor.
         }
 
-        BigDecimal flavorAvg = Util.recomputeAvg(flavor.getFlavorPrice(), flavor.getFlavorPriceCount(), price.getValue());
-        flavor.setFlavorPrice(flavorAvg);
-        gbx.put(flavor);
+        if (flavor == null) {
+            flavor = createFlavor(gbx, price, station.getKey());
+        } else {
+            BigDecimal flavorAvg = Util.recomputeAvg(flavor.getFlavorPrice(), flavor.getFlavorPriceCount(), price.getValue());
+            flavor.setFlavorPrice(flavorAvg);
+            gbx.put(flavor);
+        }
+
+        Key priceKey = Datastore.allocateId(station.getKey(), Price.class);
+        price.setKey(priceKey);
+        gbx.put(price);
 
         gbx.commit();
     }
@@ -69,10 +94,17 @@ public class Services {
      * @return get all flavors of the station (given its key as String)
      */
     public List<StationFlavor> getStationPrices(String stationKey) {
-        Key key = KeyFactory.stringToKey(stationKey);
-        StationFlavor station = Datastore.get(StationFlavor.class, key);
-        StationFlavorMeta sfm = StationFlavorMeta.get();
-        return Datastore.query(StationFlavor.class).filter(sfm.station.equal(station.getStation())).filter(sfm.flavor.isNotNull()).asList();
+        if (stationKey == null) {
+            return new ArrayList<StationFlavor>();
+        }
+        try {
+            Key key = KeyFactory.stringToKey(stationKey);
+            StationFlavor station = Datastore.get(StationFlavor.class, key);
+            StationFlavorMeta sfm = StationFlavorMeta.get();
+            return Datastore.query(StationFlavor.class).filter(sfm.station.equal(station.getStation())).filter(sfm.flavor.isNotNull()).asList();
+        } catch (IllegalArgumentException e) {
+            return new ArrayList<StationFlavor>();
+        }
     }
 
     public StationFlavor getStationFlavor(String key) {
