@@ -1,25 +1,20 @@
 package com.betfair.blocantii.model;
 
+import org.slim3.datastore.Attribute;
+import org.slim3.datastore.Model;
+
 import com.google.appengine.api.datastore.Key;
 
+@Model
 public class User {
 
-	// @Attribute(primaryKey = true)
+	@Attribute(primaryKey = true)
 	private Key key;
 
 	private String username;
 	private String yahooId;
 	private String phoneNumber;
 	private String carNumber;
-
-	public User(String username, String yahooId, String phoneNumber,
-			String carNumber) {
-		super();
-		this.username = username;
-		this.yahooId = yahooId;
-		this.phoneNumber = phoneNumber;
-		this.carNumber = carNumber;
-	}
 
 	public String getUsername() {
 		return username;
@@ -51,6 +46,14 @@ public class User {
 
 	public void setCarNumber(String carNumber) {
 		this.carNumber = carNumber;
+	}
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
 	}
 
 }
