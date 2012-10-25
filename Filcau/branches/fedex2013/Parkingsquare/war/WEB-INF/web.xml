@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.5" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
-		<servlet-name>Parkingsquare</servlet-name>
-		<servlet-class>com.betfair.blocantii.ParkingsquareServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>Parkingsquare</servlet-name>
-		<url-pattern>/parkingsquare</url-pattern>
-	</servlet-mapping>
-	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.betfair.blocantii.LoginServlet</servlet-class>
 	</servlet>
