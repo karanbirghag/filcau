@@ -9,21 +9,25 @@ import com.betfair.blocantii.meta.UserMeta;
 import com.betfair.blocantii.model.User;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.PreparedQuery.TooManyResultsException;
+import com.google.appengine.api.memcache.InvalidValueException;
 
 public class UserController {
+
+	UserMeta meta = UserMeta.get();
 
 	public List<User> getUsers() {
 		return Datastore.query(User.class).asList();
 	}
 
 	public User getUserByCarNumber(String carNumber) {
-		UserMeta meta = UserMeta.get();
 		User user = null;
 		try {
 			user = Datastore.query(meta)
 					.filter(meta.carNumber.equal(carNumber)).asSingle();
-		} catch (TooManyResultsException e) { 
-			// TODO
+		} catch (TooManyResultsException e) {
+			// should not happen
+			throw new InvalidValueException(
+					"to many results for the same car number", e);
 		}
 		return user;
 	}

@@ -5,23 +5,22 @@ import java.util.List;
 
 import org.slim3.datastore.Datastore;
 
+import com.betfair.blocantii.meta.SpotMeta;
 import com.betfair.blocantii.model.Spot;
 import com.google.appengine.api.datastore.Key;
 
 public class SpotController {
 
+	private SpotMeta meta = SpotMeta.get();
+
 	public List<Spot> getCarSpots() {
-		return Datastore.query(Spot.class).asList();
+		return Datastore.query(meta).filter(meta.type.equal("CAR")).asList();
 	}
 
 	public void initCarSpots() {
-		List<Spot> list = new ArrayList<Spot>();
-		for (int i = 0; i < 4; i++) {
-			Spot spot = new Spot();
-			spot.setType("CAR");
-			list.add(spot);
-		}
-		Datastore.put(list);
+		Spot car = new Spot();
+		car.setType("CAR");
+		Datastore.put(car);
 	}
 
 	public void deleteAllCarSpots() {
