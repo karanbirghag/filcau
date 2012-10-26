@@ -35,16 +35,30 @@ public class UserController {
 	public void initUsers() {
 		deleteAllUsers();
 		User user = new User();
-		user.setCarNumber("AAA");
-		user.setUsername("Grozav");
+		user.setCarNumber("CJ-10-JSM");
+		user.setYahooId("omulplajei");
+		user.setUsername("Rusu Rares");
+		user.setPhoneNumber("0744-784741");
+		Datastore.put(user);
+
+		user.setCarNumber("AB-05-XAB");
+		user.setYahooId("dr_hoppa");
+		user.setUsername("Popa Horea");
+		user.setPhoneNumber("0744-428963");
+		Datastore.put(user);
+
+		user.setCarNumber("AB-17-WAR");
+		user.setYahooId("tony_muntean");
+		user.setUsername("Muntean Ioan Antoniu");
+		user.setPhoneNumber("0747-683402");
 		Datastore.put(user);
 	}
 
 	public void deleteAllUsers() {
 		List<User> users = Datastore.query(User.class).asList();
 		List<Key> list = new ArrayList<Key>();
-		for (User spot : users) {
-			list.add(spot.getKey());
+		for (User user : users) {
+			list.add(user.getKey());
 		}
 		Datastore.delete(list);
 	}
