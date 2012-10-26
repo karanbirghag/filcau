@@ -7,6 +7,7 @@ public final class Constants {
 	public final static String ERR_NO_USER_FOR_CAR_NUMBER = "NO_USER_FOR_CAR_NUMBER";
 	public final static String ERR_NO_CARS = "NO_CARS";
 	public final static String ERR_NOT_A_FREE_SPOT = "NOT_A_FREE_SPOT";
+	public final static String ERR_CHECKOUT = "COULD_NOT_CHECKOUT";
 
 	public final static String ERR_NOT_A_VALID_OPERATION = "NOT_A_VALID_OPERATION";
 
