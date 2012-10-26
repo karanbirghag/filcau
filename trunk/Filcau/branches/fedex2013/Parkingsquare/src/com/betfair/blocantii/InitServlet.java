@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.betfair.blocantii.admin.AdminOperation;
 import com.betfair.blocantii.control.SpotController;
+import com.betfair.blocantii.control.StatisticsController;
 import com.betfair.blocantii.control.UserController;
 
 @SuppressWarnings("serial")
@@ -15,6 +16,7 @@ public class InitServlet extends HttpServlet {
 
 	private SpotController spotController = new SpotController();
 	private UserController userController = new UserController();
+	private StatisticsController statisticsController = new StatisticsController();
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
@@ -25,6 +27,7 @@ public class InitServlet extends HttpServlet {
 
 		switch (operation) {
 		case INIT:
+			resetDatastore();
 			initDatastore();
 			break;
 		case RESET:
@@ -33,12 +36,13 @@ public class InitServlet extends HttpServlet {
 		}
 
 		resp.setContentType("text/plain");
-		resp.getWriter().println("Application initialised");
+		resp.getWriter().println("Application Initialised");
 	}
 
 	private void resetDatastore() {
 		spotController.deleteAllCarSpots();
 		userController.deleteAllUsers();
+		statisticsController.resetStatistics();
 	}
 
 	private void initDatastore() {
