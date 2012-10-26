@@ -24,7 +24,7 @@ public class SpotServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		List<Spot> cars = spotController.getCarSpots();
 
-		String output = cars.size() != 0 ? SpotMeta.get().modelsToJson(cars)
+		String output = cars.size() != 0 ? SpotMeta.get().modelsToJson(cars, 2)
 				: JsonUtils.errorToJson(Constants.ERR_NO_CARS);
 
 		resp.setContentType("application/json");
