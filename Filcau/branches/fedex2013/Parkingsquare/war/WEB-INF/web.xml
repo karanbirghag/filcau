@@ -23,6 +23,14 @@
 	<servlet-name>SpotServlet</servlet-name>
 		<url-pattern>/cars</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>StatisticsServlet</servlet-name>
+		<servlet-class>com.betfair.blocantii.StatisticsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>StatisticsServlet</servlet-name>
+		<url-pattern>/statistics</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
