@@ -14,6 +14,7 @@ import com.betfair.blocantii.control.StatisticsController;
 import com.betfair.blocantii.control.UserController;
 import com.betfair.blocantii.meta.SpotMeta;
 import com.betfair.blocantii.model.Spot;
+import com.betfair.blocantii.model.Statistics;
 import com.betfair.blocantii.model.User;
 import com.betfair.blocantii.util.Constants;
 import com.betfair.blocantii.util.JsonUtils;
@@ -46,6 +47,7 @@ public class OperationServlet extends HttpServlet {
 				if (isFreeSpot) {
 					User user = userController.getUserByKey(userKey);
 					spotController.linkSpotToItsUser(freeSpot, user);
+					updateStatistics();
 					output = SpotMeta.get().modelToJson(freeSpot);
 				} else {
 					output = JsonUtils
@@ -65,6 +67,13 @@ public class OperationServlet extends HttpServlet {
 		}
 		resp.getWriter().print(output);
 		resp.getWriter().flush();
+	}
+
+	private void updateStatistics() {
+		Statistics statistics = statisticsController.getStatistics();
+		statistics.setOccupiedSpots(statistics.getOccupiedSpots() + 1);
+		statistics.setFreeSpots(statistics.getFreeSpots() - 1);
+		statisticsController.updateStats(statistics);
 	}
 
 	private Spot populateDesiredSpot(HttpServletRequest req) {
