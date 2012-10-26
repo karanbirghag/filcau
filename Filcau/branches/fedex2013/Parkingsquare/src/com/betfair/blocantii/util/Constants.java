@@ -3,9 +3,12 @@ package com.betfair.blocantii.util;
 public final class Constants {
 
 	public final static int DEFAULT_FREE_SPOTS = 0;
-	
+
 	public final static String ERR_NO_USER_FOR_CAR_NUMBER = "NO_USER_FOR_CAR_NUMBER";
 	public final static String ERR_NO_CARS = "NO_CARS";
+	public final static String ERR_NOT_A_FREE_SPOT = "NOT_A_FREE_SPOT";
+
+	public final static String ERR_NOT_A_VALID_OPERATION = "NOT_A_VALID_OPERATION";
 
 	public final static String STATS_FREE_SPOTS = "STATS_FREE_SPOTS";
 	public final static String STATS_OCCUPIED_SPOTS = "STATS_OCCUPIED_SPOTS";

@@ -14,23 +14,20 @@ public final class JsonUtils {
 
 	public static String statsToJson(int freeSpots, int occupiedSpots,
 			int blockedSpots, int blockingSpots) throws JSONException {
-		
+
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		
+
 		map.put(Constants.STATS_FREE_SPOTS, freeSpots);
 		map.put(Constants.STATS_OCCUPIED_SPOTS, occupiedSpots);
 		map.put(Constants.STATS_BLOCKED_SPOTS, blockedSpots);
 		map.put(Constants.STATS_BLOCKING_SPOTS, blockingSpots);
 
 		JSONObject jsonStats = new JSONObject(map);
-		
 		return jsonStats.toString();
-
-
 	}
 
 	public static void main(String[] args) throws JSONException {
-		statsToJson(11,43,43,3);
+
 	}
 
 }
