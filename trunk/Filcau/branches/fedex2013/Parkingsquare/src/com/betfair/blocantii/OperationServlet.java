@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.EnumUtils;
+import org.slim3.datastore.Datastore;
+import org.slim3.datastore.GlobalTransaction;
 
 import com.betfair.blocantii.admin.UserOperation;
 import com.betfair.blocantii.control.SpotController;
@@ -88,17 +90,29 @@ public class OperationServlet extends HttpServlet {
 	}
 
 	private void updateCheckinStatistics() {
-		Statistics statistics = statisticsController.getStatistics();
+		GlobalTransaction gtx = Datastore.beginGlobalTransaction();
+		Statistics statistics = gtx.get(Statistics.class, statisticsController
+				.getStatistics().getKey());
+
 		statistics.setOccupiedSpots(statistics.getOccupiedSpots() + 1);
 		statistics.setFreeSpots(statistics.getFreeSpots() - 1);
 		statisticsController.updateStats(statistics);
+
+		gtx.put(statistics);
+		gtx.commit();
 	}
 
 	private void updateCheckoutStatistics() {
-		Statistics statistics = statisticsController.getStatistics();
+		GlobalTransaction gtx = Datastore.beginGlobalTransaction();
+		Statistics statistics = gtx.get(Statistics.class, statisticsController
+				.getStatistics().getKey());
+
 		statistics.setOccupiedSpots(statistics.getOccupiedSpots() - 1);
 		statistics.setFreeSpots(statistics.getFreeSpots() + 1);
 		statisticsController.updateStats(statistics);
+
+		gtx.put(statistics);
+		gtx.commit();
 	}
 
 	private Spot populateDesiredSpot(HttpServletRequest req) {

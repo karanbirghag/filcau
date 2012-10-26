@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
 
 	private UserController userController = new UserController();
 
-	public void doPost(HttpServletRequest req, HttpServletResponse resp)
+	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
 		String carNumber = req.getParameter("carNumber");
