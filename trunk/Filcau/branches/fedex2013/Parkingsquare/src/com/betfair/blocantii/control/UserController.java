@@ -41,12 +41,14 @@ public class UserController {
 		user.setPhoneNumber("0744-784741");
 		Datastore.put(user);
 
+		user = new User();
 		user.setCarNumber("AB-05-XAB");
 		user.setYahooId("dr_hoppa");
 		user.setUsername("Popa Horea");
 		user.setPhoneNumber("0744-428963");
 		Datastore.put(user);
 
+		user = new User();
 		user.setCarNumber("AB-17-WAR");
 		user.setYahooId("tony_muntean");
 		user.setUsername("Muntean Ioan Antoniu");
