@@ -13,6 +13,7 @@ import com.betfair.blocantii.control.SpotController;
 import com.betfair.blocantii.control.StatisticsController;
 import com.betfair.blocantii.control.UserController;
 import com.betfair.blocantii.meta.SpotMeta;
+import com.betfair.blocantii.meta.UserMeta;
 import com.betfair.blocantii.model.Spot;
 import com.betfair.blocantii.model.Statistics;
 import com.betfair.blocantii.model.User;
@@ -47,7 +48,7 @@ public class OperationServlet extends HttpServlet {
 				break;
 
 			case GET_OWNER_DETAILS:
-
+				output = getOwnerDetails(req);
 				break;
 			}
 
@@ -56,10 +57,16 @@ public class OperationServlet extends HttpServlet {
 		resp.getWriter().flush();
 	}
 
+	private String getOwnerDetails(HttpServletRequest req) {
+		User user = userController.getUserByKey("userKey");
+		return UserMeta.get().modelToJson(user);
+	}
+
 	private void checkout(HttpServletRequest req) {
 		String spotKey = req.getParameter("spotKey");
 		Spot spot = spotController.getSpotByKey(spotKey);
 		spotController.deleteSpotByKey(spot.getKey());
+		updateCheckoutStatistics();
 	}
 
 	private String checkin(HttpServletRequest req) {
@@ -72,7 +79,7 @@ public class OperationServlet extends HttpServlet {
 		if (isFreeSpot) {
 			User user = userController.getUserByKey(userKey);
 			spotController.linkSpotToItsUser(freeSpot, user);
-			updateStatistics();
+			updateCheckinStatistics();
 			output = SpotMeta.get().modelToJson(freeSpot);
 		} else {
 			output = JsonUtils.errorToJson(Constants.ERR_NOT_A_FREE_SPOT);
@@ -80,10 +87,17 @@ public class OperationServlet extends HttpServlet {
 		return output;
 	}
 
-	private void updateStatistics() {
+	private void updateCheckinStatistics() {
 		Statistics statistics = statisticsController.getStatistics();
 		statistics.setOccupiedSpots(statistics.getOccupiedSpots() + 1);
 		statistics.setFreeSpots(statistics.getFreeSpots() - 1);
+		statisticsController.updateStats(statistics);
+	}
+
+	private void updateCheckoutStatistics() {
+		Statistics statistics = statisticsController.getStatistics();
+		statistics.setOccupiedSpots(statistics.getOccupiedSpots() - 1);
+		statistics.setFreeSpots(statistics.getFreeSpots() + 1);
 		statisticsController.updateStats(statistics);
 	}
 
