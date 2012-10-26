@@ -39,24 +39,11 @@ public class OperationServlet extends HttpServlet {
 
 			switch (operation) {
 			case CHECK_IN:
-				String userKey = req.getParameter("userKey");
-				Spot desiredSpot = populateDesiredSpot(req);
-				Spot freeSpot = spotController.getFreeSpot(desiredSpot);
-				boolean isFreeSpot = freeSpot != null;
-
-				if (isFreeSpot) {
-					User user = userController.getUserByKey(userKey);
-					spotController.linkSpotToItsUser(freeSpot, user);
-					updateStatistics();
-					output = SpotMeta.get().modelToJson(freeSpot);
-				} else {
-					output = JsonUtils
-							.errorToJson(Constants.ERR_NOT_A_FREE_SPOT);
-				}
+				output = checkin(req);
 				break;
 
 			case CHECK_OUT:
-
+				checkout(req);
 				break;
 
 			case GET_OWNER_DETAILS:
@@ -67,6 +54,30 @@ public class OperationServlet extends HttpServlet {
 		}
 		resp.getWriter().print(output);
 		resp.getWriter().flush();
+	}
+
+	private void checkout(HttpServletRequest req) {
+		String spotKey = req.getParameter("spotKey");
+		Spot spot = spotController.getSpotByKey(spotKey);
+		spotController.deleteSpotByKey(spot.getKey());
+	}
+
+	private String checkin(HttpServletRequest req) {
+		String output;
+		String userKey = req.getParameter("userKey");
+		Spot desiredSpot = populateDesiredSpot(req);
+		Spot freeSpot = spotController.getFreeSpot(desiredSpot);
+		boolean isFreeSpot = freeSpot != null;
+
+		if (isFreeSpot) {
+			User user = userController.getUserByKey(userKey);
+			spotController.linkSpotToItsUser(freeSpot, user);
+			updateStatistics();
+			output = SpotMeta.get().modelToJson(freeSpot);
+		} else {
+			output = JsonUtils.errorToJson(Constants.ERR_NOT_A_FREE_SPOT);
+		}
+		return output;
 	}
 
 	private void updateStatistics() {

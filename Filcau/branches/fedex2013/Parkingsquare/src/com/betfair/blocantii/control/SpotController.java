@@ -93,4 +93,13 @@ public class SpotController {
 		freeSpot.getUser().setModel(user);
 		Datastore.put(freeSpot);
 	}
+
+	public Spot getSpotByKey(String spotKey) {
+		Key key = Datastore.stringToKey(spotKey);
+		return Datastore.get(Spot.class, key);
+	}
+
+	public void deleteSpotByKey(Key key) {
+		Datastore.delete(key);
+	}
 }
