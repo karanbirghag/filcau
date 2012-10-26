@@ -2,6 +2,7 @@ package com.betfair.blocantii.model;
 
 import org.slim3.datastore.Attribute;
 import org.slim3.datastore.Model;
+import org.slim3.datastore.ModelRef;
 
 import com.google.appengine.api.datastore.Key;
 
@@ -21,7 +22,6 @@ public class Spot {
 	 * second point
 	 */
 	private int y1;
-
 	private int y2;
 
 	/**
@@ -31,6 +31,8 @@ public class Spot {
 
 	private boolean blocked;
 	private boolean blocking;
+
+	private ModelRef<User> user = new ModelRef<User>(User.class);
 
 	@Override
 	public String toString() {
@@ -99,6 +101,10 @@ public class Spot {
 
 	public void setBlocking(boolean blocking) {
 		this.blocking = blocking;
+	}
+
+	public ModelRef<User> getUser() {
+		return user;
 	}
 
 }

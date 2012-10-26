@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.betfair.blocantii.admin.AdminOperation;
 import com.betfair.blocantii.control.SpotController;
 import com.betfair.blocantii.control.StatisticsController;
 import com.betfair.blocantii.control.UserController;
@@ -21,32 +20,17 @@ public class InitServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
-		String parameter = req.getParameter("OPERATION");
-		AdminOperation operation = parameter != null ? AdminOperation
-				.valueOf(parameter) : AdminOperation.INIT;
-
-		switch (operation) {
-		case INIT:
-			resetDatastore();
-			initDatastore();
-			break;
-		case RESET:
-			resetDatastore();
-			break;
-		}
+		initDatastore();
 
 		resp.setContentType("text/plain");
 		resp.getWriter().println("Application Initialised");
 	}
 
-	private void resetDatastore() {
+	private void initDatastore() {
 		spotController.deleteAllCarSpots();
 		userController.deleteAllUsers();
-		statisticsController.resetStatistics();
-	}
-
-	private void initDatastore() {
 		spotController.initCarSpots();
 		userController.initUsers();
+		statisticsController.resetStatistics();
 	}
 }

@@ -47,4 +47,10 @@ public class UserController {
 		}
 		Datastore.delete(list);
 	}
+
+	public User getUserByKey(String userKey) {
+		Key key = Datastore.stringToKey(userKey);
+		return Datastore.get(User.class, key);
+	}
+
 }

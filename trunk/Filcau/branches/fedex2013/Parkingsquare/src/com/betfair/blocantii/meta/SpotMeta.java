@@ -1,6 +1,6 @@
 package com.betfair.blocantii.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2012-10-26 10:00:06")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2012-10-26 11:38:35")
 /** */
 public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.blocantii.model.Spot> {
 
@@ -15,6 +15,9 @@ public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.bl
 
     /** */
     public final org.slim3.datastore.StringAttributeMeta<com.betfair.blocantii.model.Spot> type = new org.slim3.datastore.StringAttributeMeta<com.betfair.blocantii.model.Spot>(this, "type", "type");
+
+    /** */
+    public final org.slim3.datastore.ModelRefAttributeMeta<com.betfair.blocantii.model.Spot, org.slim3.datastore.ModelRef<com.betfair.blocantii.model.User>, com.betfair.blocantii.model.User> user = new org.slim3.datastore.ModelRefAttributeMeta<com.betfair.blocantii.model.Spot, org.slim3.datastore.ModelRef<com.betfair.blocantii.model.User>, com.betfair.blocantii.model.User>(this, "user", "user", org.slim3.datastore.ModelRef.class, com.betfair.blocantii.model.User.class);
 
     /** */
     public final org.slim3.datastore.CoreAttributeMeta<com.betfair.blocantii.model.Spot, java.lang.Integer> x1 = new org.slim3.datastore.CoreAttributeMeta<com.betfair.blocantii.model.Spot, java.lang.Integer>(this, "x1", "x1", int.class);
@@ -49,6 +52,10 @@ public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.bl
         model.setBlocking(booleanToPrimitiveBoolean((java.lang.Boolean) entity.getProperty("blocking")));
         model.setKey(entity.getKey());
         model.setType((java.lang.String) entity.getProperty("type"));
+        if (model.getUser() == null) {
+            throw new NullPointerException("The property(user) is null.");
+        }
+        model.getUser().setKey((com.google.appengine.api.datastore.Key) entity.getProperty("user"));
         model.setX1(longToPrimitiveInt((java.lang.Long) entity.getProperty("x1")));
         model.setX2(longToPrimitiveInt((java.lang.Long) entity.getProperty("x2")));
         model.setY1(longToPrimitiveInt((java.lang.Long) entity.getProperty("y1")));
@@ -68,6 +75,10 @@ public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.bl
         entity.setProperty("blocked", m.isBlocked());
         entity.setProperty("blocking", m.isBlocking());
         entity.setProperty("type", m.getType());
+        if (m.getUser() == null) {
+            throw new NullPointerException("The property(user) must not be null.");
+        }
+        entity.setProperty("user", m.getUser().getKey());
         entity.setProperty("x1", m.getX1());
         entity.setProperty("x2", m.getX2());
         entity.setProperty("y1", m.getY1());
@@ -95,6 +106,11 @@ public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.bl
 
     @Override
     protected void assignKeyToModelRefIfNecessary(com.google.appengine.api.datastore.AsyncDatastoreService ds, java.lang.Object model) {
+        com.betfair.blocantii.model.Spot m = (com.betfair.blocantii.model.Spot) model;
+        if (m.getUser() == null) {
+            throw new NullPointerException("The property(user) must not be null.");
+        }
+        m.getUser().assignKeyIfNecessary(ds);
     }
 
     @Override
@@ -141,6 +157,10 @@ public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.bl
             writer.setNextPropertyName("type");
             encoder0.encode(writer, m.getType());
         }
+        if(m.getUser() != null && m.getUser().getKey() != null){
+            writer.setNextPropertyName("user");
+            encoder0.encode(writer, m.getUser(), maxDepth, currentDepth);
+        }
         writer.setNextPropertyName("x1");
         encoder0.encode(writer, m.getX1());
         writer.setNextPropertyName("x2");
@@ -165,6 +185,8 @@ public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.bl
         m.setKey(decoder0.decode(reader, m.getKey()));
         reader = rootReader.newObjectReader("type");
         m.setType(decoder0.decode(reader, m.getType()));
+        reader = rootReader.newObjectReader("user");
+        decoder0.decode(reader, m.getUser(), maxDepth, currentDepth);
         reader = rootReader.newObjectReader("x1");
         m.setX1(decoder0.decode(reader, m.getX1()));
         reader = rootReader.newObjectReader("x2");

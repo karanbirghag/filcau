@@ -1,6 +1,6 @@
 package com.betfair.blocantii.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2012-10-26 10:17:52")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2012-10-26 11:07:39")
 /** */
 public final class StatisticsMeta extends org.slim3.datastore.ModelMeta<com.betfair.blocantii.model.Statistics> {
 

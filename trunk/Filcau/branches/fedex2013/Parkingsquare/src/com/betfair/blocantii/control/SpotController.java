@@ -7,6 +7,7 @@ import org.slim3.datastore.Datastore;
 
 import com.betfair.blocantii.meta.SpotMeta;
 import com.betfair.blocantii.model.Spot;
+import com.betfair.blocantii.model.User;
 import com.google.appengine.api.datastore.Key;
 
 public class SpotController {
@@ -17,6 +18,10 @@ public class SpotController {
 		return Datastore.query(meta).filter(meta.type.equal("CAR")).asList();
 	}
 
+	public List<Spot> getAllSpots() {
+		return Datastore.query(meta).asList();
+	}
+
 	public void initCarSpots() {
 		Spot car = new Spot();
 		car.setType("CAR");
@@ -24,11 +29,37 @@ public class SpotController {
 	}
 
 	public void deleteAllCarSpots() {
-		List<Spot> carSpots = Datastore.query(Spot.class).asList();
-		List<Key> list = new ArrayList<Key>();
+		List<Spot> carSpots = getCarSpots();
+		List<Key> keyList = new ArrayList<Key>();
 		for (Spot spot : carSpots) {
-			list.add(spot.getKey());
+			keyList.add(spot.getKey());
 		}
-		Datastore.delete(list);
+		Datastore.delete(keyList);
+	}
+
+	public Spot getFreeSpot(Spot desiredSpot) {
+		boolean isFree = true;
+
+		for (Spot spot : getAllSpots()) {
+			if (isConflict(spot, desiredSpot)) {
+				isFree = false;
+			}
+		}
+		return isFree ? desiredSpot : null;
+	}
+
+	public Spot[] getBlockedSpots(Spot desiredSpot) {
+		// TODO run it after check-in/out
+		return null;
+	}
+
+	private boolean isConflict(Spot spot, Spot desiredSpot) {
+		// TODO
+		return false;
+	}
+
+	public void linkSpotToItsUser(Spot freeSpot, User user) {
+		freeSpot.getUser().setModel(user);
+		Datastore.put(freeSpot);
 	}
 }
