@@ -23,7 +23,16 @@ public class SpotController {
 	}
 
 	public void initCarSpots() {
-		Spot car = new Spot();
+		deleteAllCarSpots();
+		Spot car = new Spot(100, 100, 200, 147);
+		car.setType("CAR");
+		Datastore.put(car);
+		
+		car = new Spot(400, 100, 500, 147);
+		car.setType("CAR");
+		Datastore.put(car);
+
+		car = new Spot(100, 300, 147, 400);
 		car.setType("CAR");
 		Datastore.put(car);
 	}

@@ -33,6 +33,7 @@ public class UserController {
 	}
 
 	public void initUsers() {
+		deleteAllUsers();
 		User user = new User();
 		user.setCarNumber("AAA");
 		user.setUsername("Grozav");

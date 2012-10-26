@@ -73,6 +73,7 @@ public class OperationServlet extends HttpServlet {
 		spot.setY1(Integer.parseInt(req.getParameter("y1")));
 		spot.setX2(Integer.parseInt(req.getParameter("x2")));
 		spot.setY2(Integer.parseInt(req.getParameter("y2")));
+		spot.setType("CAR");
 
 		return spot;
 	}

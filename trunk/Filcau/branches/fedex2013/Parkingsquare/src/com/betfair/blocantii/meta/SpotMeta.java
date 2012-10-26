@@ -1,6 +1,6 @@
 package com.betfair.blocantii.meta;
 
-//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2012-10-26 11:38:35")
+//@javax.annotation.Generated(value = { "slim3-gen", "@VERSION@" }, date = "2012-10-26 12:35:10")
 /** */
 public final class SpotMeta extends org.slim3.datastore.ModelMeta<com.betfair.blocantii.model.Spot> {
 

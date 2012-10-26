@@ -2,7 +2,7 @@ package com.betfair.blocantii.util;
 
 public final class Constants {
 
-	public final static int DEFAULT_FREE_SPOTS = 0;
+	public final static int DEFAULT_FREE_SPOTS = 39;
 
 	public final static String ERR_NO_USER_FOR_CAR_NUMBER = "NO_USER_FOR_CAR_NUMBER";
 	public final static String ERR_NO_CARS = "NO_CARS";
