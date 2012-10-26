@@ -9,6 +9,17 @@ import com.google.appengine.api.datastore.Key;
 @Model
 public class Spot {
 
+	public Spot() {
+	}
+	
+	public Spot(int x1, int y1, int x2, int y2) {
+		super();
+		this.x1 = x1;
+		this.x2 = x2;
+		this.y1 = y1;
+		this.y2 = y2;
+	}
+
 	@Attribute(primaryKey = true)
 	private Key key;
 
@@ -102,7 +113,6 @@ public class Spot {
 	public void setBlocking(boolean blocking) {
 		this.blocking = blocking;
 	}
-
 	public ModelRef<User> getUser() {
 		return user;
 	}
