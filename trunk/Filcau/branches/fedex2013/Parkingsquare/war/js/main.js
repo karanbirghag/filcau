@@ -27,11 +27,6 @@ var userCheckedIn = false;
 		}
 	}
 	
-	function flipCar() {
-        this.rotate(Math.PI / 2);
-	}
-	
-	
 	//onReady
 	$(function() {
 		$("#submitBt").click(function() {
@@ -84,12 +79,10 @@ var userCheckedIn = false;
 								            x: allCars[index].x1,
 								            y: allCars[index].y1,
 								            width: allCars[index].x2 - allCars[index].x1,
-								            height: allCars[index].y2 - allCars[index].y1,
-								            draggable: true
+								            height: allCars[index].y2 - allCars[index].y1
 								          });
 										drawImage(stage, carImg);
 										carImg.on("click", carClicked);
-										carImg.on("dragstart", flipCar);
 									};
 									
 									var width = allCars[ci].x2 - allCars[ci].x1;
@@ -154,9 +147,6 @@ var userCheckedIn = false;
 				mainStage.add(layer);
 			}
 		});
-		
-		
-		
 	}
 	
     function drawImage(stage, backgroundImg) {
@@ -202,7 +192,6 @@ var userCheckedIn = false;
 								height: y2-y1
 							});
 							carImg.on("click", carClicked);
-							carImg.on("dragstart", flipCar);
 							
 							layer.add(carImg);
 							mainStage.add(layer);
