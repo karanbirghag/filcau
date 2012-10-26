@@ -27,7 +27,7 @@ public class SpotController {
 		Spot car = new Spot(100, 100, 200, 147);
 		car.setType("CAR");
 		Datastore.put(car);
-		
+
 		car = new Spot(400, 100, 500, 147);
 		car.setType("CAR");
 		Datastore.put(car);
@@ -63,8 +63,30 @@ public class SpotController {
 	}
 
 	private boolean isConflict(Spot spot, Spot desiredSpot) {
-		// TODO
-		return false;
+		boolean isConflict = false;
+
+		boolean overlapsFromUpperLeft = desiredSpot.getX2() >= spot.getX1()
+				&& desiredSpot.getX2() <= spot.getX2()
+				&& desiredSpot.getY2() >= spot.getY1()
+				&& desiredSpot.getY2() <= spot.getY2();
+		boolean overlapsFromUpperRight = desiredSpot.getX1() >= spot.getX1()
+				&& desiredSpot.getX1() <= spot.getX2()
+				&& desiredSpot.getY2() >= spot.getY1()
+				&& desiredSpot.getY2() <= spot.getY2();
+		boolean overlapsFromLowerRight = desiredSpot.getX1() <= spot.getX2()
+				&& desiredSpot.getX1() >= spot.getX1()
+				&& desiredSpot.getY1() <= spot.getY2()
+				&& desiredSpot.getY1() >= spot.getY1();
+		boolean overlapsFromLowerLeft = desiredSpot.getX2() >= spot.getX1()
+				&& desiredSpot.getX2() <= spot.getX2()
+				&& desiredSpot.getY1() <= spot.getY2()
+				&& desiredSpot.getY1() >= spot.getY1();
+
+		if (overlapsFromUpperLeft || overlapsFromUpperRight
+				|| overlapsFromLowerLeft || overlapsFromLowerRight) {
+			isConflict = true;
+		}
+		return isConflict;
 	}
 
 	public void linkSpotToItsUser(Spot freeSpot, User user) {
