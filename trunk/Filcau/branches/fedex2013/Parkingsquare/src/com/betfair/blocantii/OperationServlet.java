@@ -60,7 +60,7 @@ public class OperationServlet extends HttpServlet {
 	}
 
 	private String getOwnerDetails(HttpServletRequest req) {
-		User user = userController.getUserByKey("userKey");
+		User user = userController.getUserByKey(req.getParameter("userKey"));
 		return UserMeta.get().modelToJson(user);
 	}
 
