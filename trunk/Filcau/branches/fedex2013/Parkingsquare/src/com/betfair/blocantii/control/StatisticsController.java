@@ -29,9 +29,9 @@ public class StatisticsController {
 			stats = new Statistics();
 		}
 		stats.setFreeSpots(Constants.DEFAULT_FREE_SPOTS);
-		stats.setOccupiedSpots(10);
-		stats.setBlockedSpots(20);
-		stats.setBlockingSpots(30);
+		stats.setOccupiedSpots(0);
+		stats.setBlockedSpots(0);
+		stats.setBlockingSpots(0);
 		Datastore.put(stats);
 	}
 
